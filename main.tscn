@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c81y4e1m5pa6p"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_qlyrg"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_qlyrg")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 409.0
+offset_top = 293.0
+offset_right = 723.0
+offset_bottom = 414.0
+tooltip_text = "Press this to play the game!"
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 409.0
+offset_top = 454.0
+offset_right = 723.0
+offset_bottom = 575.0
+tooltip_text = "Buh Bye!"
+text = "Quit!"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

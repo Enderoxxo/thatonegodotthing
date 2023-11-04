@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://f6v5o8ddij"]
+
+[ext_resource type="Texture2D" uid="uid://c7mr0eg6bqmf3" path="res://Bullet/TENNISBALL.png" id="1_cpv04"]
+[ext_resource type="Script" path="res://Bullet/Bullet.gd" id="1_hv7ru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3ue2"]
+radius = 8.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+can_sleep = false
+script = ExtResource("1_hv7ru")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-07, 4.54747e-13)
+scale = Vector2(1.875, 1.73077)
+texture = ExtResource("1_cpv04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c3ue2")
