@@ -21,7 +21,7 @@ func _process(delta):
 		t.start()
 		await t.timeout
 		var shooting =get_tree().get_nodes_in_group("Enemy")[0]
-		shooting.shooting_state = shooting.Shoot_state.reset
+		shooting.AIshooting_state = shooting.AIShoot_state.reset
 		
 		queue_free()
 	pass

@@ -1,6 +1,6 @@
 extends Node
 
-enum Shoot_state{
+enum AIShoot_state{
 	idle,
 	firing,
 	bullet_lauched,
@@ -8,12 +8,12 @@ enum Shoot_state{
 	reset
 }
 
-var shooting_state
-var tracer
-var gunpos
+var AIshooting_state
+var tip_of_gun
+var gun2pos
 var centered
-var prevshot
-var firsttime
+var ai_turn
+@onready var shooting = get_tree().get_nodes_in_group("Shooting")[0]
 var bullet_path
 var shooter_pos
 var correctshot
@@ -23,15 +23,24 @@ func _ready():
 	centered = $Gun2.position
 	bullet_path = load("res://Bullet/Bullet2.tscn")
 	correctshot = $CorrectShot.position
-	shooting_state = Shoot_state.firing
+	AIshooting_state = AIShoot_state.firing
+	tip_of_gun = get_tree().get_nodes_in_group("Tipofgun")[0].position
+	gun2pos = $Gun2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	match shooting_state:
-		Shoot_state.firing:
+	
+	var t = Timer.new()
+	t.set_wait_time(2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	await t.timeout
+	match AIshooting_state:
+		AIShoot_state.firing:
 			var bullet = get_tree().get_nodes_in_group("Bullet2")[0]
-			
+			gun2pos.look_at(correctshot)
 			var location = correctshot
 			var distance = location.distance_to(centered)
 			var velocity = centered - location
@@ -51,16 +60,19 @@ func _process(delta):
 			#if velocity
 			print(velocity)
 			bullet.apply_impulse(-velocity/5 * distance)
-			shooting_state = Shoot_state.bullet_lauched
-			GameManager.current_game_state = GameManager.GameState.Play
-			get_tree().get_nodes_in_group("Camera")[0].follow_bullet = true
+			AIshooting_state = AIShoot_state.bullet_lauched
+			#GameManager.current_game_state = GameManager.GameState.Play
+			get_tree().get_nodes_in_group("Camera")[0].AIfollow_bullet = true
 			
 			
 			pass
 
-		Shoot_state.reset:
+		AIShoot_state.reset:
 			var bullet = bullet_path.instantiate()
 			bullet.bullet_ready()
-			bullet.position.x = 14
+			bullet.position = tip_of_gun
 			get_node("Gun2").add_child(bullet)
 			bullet.visible = false
+
+			shooting.shooting_state = shooting.Shoot_state.idle
+				

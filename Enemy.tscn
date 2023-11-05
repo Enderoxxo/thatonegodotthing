@@ -11,6 +11,11 @@ script = ExtResource("1_o5pxp")
 texture = ExtResource("2_cat0w")
 
 [node name="Bullet2" parent="Gun2" instance=ExtResource("3_u67v3")]
+visible = false
+position = Vector2(13, -4)
+
+[node name="Tipofgun" type="Marker2D" parent="Gun2" groups=["Tipofgun"]]
+position = Vector2(13, -4)
 
 [node name="CorrectShot" type="Marker2D" parent="."]
-position = Vector2(97, 40)
+position = Vector2(44, -7)

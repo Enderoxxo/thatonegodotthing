@@ -16,6 +16,7 @@ var centered
 var prevshot
 var firsttime
 var bullet_path
+@onready var Enemy = get_tree().get_nodes_in_group("Enemy")[0]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	shooting_state = Shoot_state.idle
@@ -84,7 +85,7 @@ func _process(delta):
 			pass
 			
 		Shoot_state.handover_ai:
-			
+			Enemy.AIshooting_state = Enemy.AIShoot_state.firing
 			pass
 			
 		Shoot_state.reset:
@@ -94,7 +95,7 @@ func _process(delta):
 			get_node("Gun").add_child(bullet)
 			bullet.visible = false
 
-			shooting_state = Shoot_state.idle
+			shooting_state = Shoot_state.handover_ai
 			
 	pass
 
