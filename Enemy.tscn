@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwpe71t1t7i5m"]
+
+[ext_resource type="Script" path="res://ai.gd" id="1_o5pxp"]
+[ext_resource type="Texture2D" uid="uid://cswjk0gt087vt" path="res://Gun/gunplaceholder.png" id="2_cat0w"]
+[ext_resource type="PackedScene" uid="uid://dj7dcn7ek8ch1" path="res://Bullet/Bullet2.tscn" id="3_u67v3"]
+
+[node name="Enemy" type="Node2D" groups=["Enemy"]]
+script = ExtResource("1_o5pxp")
+
+[node name="Gun2" type="Sprite2D" parent="."]
+texture = ExtResource("2_cat0w")
+
+[node name="Bullet2" parent="Gun2" instance=ExtResource("3_u67v3")]
+
+[node name="CorrectShot" type="Marker2D" parent="."]
+position = Vector2(97, 40)

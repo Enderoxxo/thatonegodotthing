@@ -1,13 +1,38 @@
-extends Area2D
+extends RigidBody2D
 
-var velocity = Vector2(350, 0)
+enum bullet_state{
+	notshot,
+	shot
+}
+
+
+var state
+
+func _ready():
+	bullet_ready()
 
 
 func _process(delta):
-	velocity.y += gravity * delta
-	position += velocity * delta
-	rotation = velocity.angle()
-
-
-func _on_BallisticBullet_body_entered(body):
-	queue_free()
+	if state == bullet_state.shot && linear_velocity <=Vector2(2,2):
+		var t = Timer.new()
+		t.set_wait_time(2)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		await t.timeout
+		var shooting =get_tree().get_nodes_in_group("Enemy")[0]
+		shooting.shooting_state = shooting.Shoot_state.reset
+		
+		queue_free()
+	pass
+	
+func bullet_ready():
+	state = bullet_state.notshot
+	self.set_freeze_enabled(true)
+	
+	
+	
+func lauch_bullet():
+	state = bullet_state.shot
+	self.set_freeze_enabled(false)
+	

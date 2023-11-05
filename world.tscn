@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvwc68upppf3o"]
+[gd_scene load_steps=7 format=3 uid="uid://cvwc68upppf3o"]
 
 [ext_resource type="PackedScene" uid="uid://dd4ogducp3nu6" path="res://shooting.tscn" id="1_nleqj"]
 [ext_resource type="Script" path="res://cameracontrol.gd" id="2_gcgja"]
 [ext_resource type="Texture2D" uid="uid://2oj3c71sm1jl" path="res://icon.svg" id="3_jdoqv"]
+[ext_resource type="PackedScene" uid="uid://cwpe71t1t7i5m" path="res://Enemy.tscn" id="4_4y5cv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ac0ke"]
 size = Vector2(476, 20)
@@ -39,3 +40,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 position = Vector2(4.52995e-06, -0.249998)
 scale = Vector2(0.890625, 1.21875)
 texture = ExtResource("3_jdoqv")
+
+[node name="Enemy" parent="." instance=ExtResource("4_4y5cv")]
+position = Vector2(404, -158)

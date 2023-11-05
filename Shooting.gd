@@ -4,6 +4,7 @@ enum Shoot_state{
 	idle,
 	firing,
 	bullet_lauched,
+	handover_ai,
 	reset
 }
 
@@ -81,6 +82,11 @@ func _process(delta):
 
 		Shoot_state.bullet_lauched:
 			pass
+			
+		Shoot_state.handover_ai:
+			
+			pass
+			
 		Shoot_state.reset:
 			var bullet = bullet_path.instantiate()
 			bullet.bullet_ready()
