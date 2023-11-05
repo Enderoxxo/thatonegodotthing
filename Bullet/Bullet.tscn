@@ -6,14 +6,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3ue2"]
 radius = 8.0
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Bullet" type="RigidBody2D" groups=["Bullet"]]
 can_sleep = false
+freeze_mode = 1
 script = ExtResource("1_hv7ru")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.19209e-07, 4.54747e-13)
-scale = Vector2(1.875, 1.73077)
-texture = ExtResource("1_cpv04")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_c3ue2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.47035e-08, 0)
+scale = Vector2(0.95, 0.9155)
+texture = ExtResource("1_cpv04")

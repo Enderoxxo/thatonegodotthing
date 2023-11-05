@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd4ogducp3nu6"]
+
+[ext_resource type="Script" path="res://Shooting.gd" id="1_ay3jj"]
+[ext_resource type="Texture2D" uid="uid://cswjk0gt087vt" path="res://Gun/gunplaceholder.png" id="2_y6sui"]
+[ext_resource type="Texture2D" uid="uid://dm6wnvoshldnq" path="res://dottedline.png" id="3_uixn3"]
+[ext_resource type="PackedScene" uid="uid://f6v5o8ddij" path="res://Bullet/Bullet.tscn" id="4_07igu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3fp7"]
+radius = 110.0
+
+[node name="Shooting" type="Node2D" groups=["Shooting"]]
+script = ExtResource("1_ay3jj")
+
+[node name="prevshot" type="Line2D" parent="."]
+visible = false
+texture_repeat = 2
+position = Vector2(0.231206, 0)
+scale = Vector2(0.933, 0.978)
+points = PackedVector2Array(0, 0, 72.057, 0)
+width = 2.0
+default_color = Color(0.960784, 0.690196, 0.0156863, 0.380392)
+texture = ExtResource("3_uixn3")
+texture_mode = 1
+
+[node name="tracer" type="Line2D" parent="."]
+texture_repeat = 2
+position = Vector2(-0.133333, 0)
+scale = Vector2(0.933333, 0.978)
+points = PackedVector2Array(0, 0, 11, 0)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+texture = ExtResource("3_uixn3")
+texture_mode = 1
+
+[node name="Gun" type="Sprite2D" parent="."]
+texture = ExtResource("2_y6sui")
+offset = Vector2(0, 4)
+
+[node name="Bullet" parent="Gun" instance=ExtResource("4_07igu")]
+visible = false
+position = Vector2(14, 0)
+
+[node name="TouchArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea" groups=["Bullets"]]
+shape = SubResource("CircleShape2D_h3fp7")
+
+[node name="center_of_gun" type="Marker2D" parent="."]
+
+[connection signal="input_event" from="TouchArea" to="." method="_on_touch_area_input_event"]

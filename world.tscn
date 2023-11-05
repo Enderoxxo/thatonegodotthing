@@ -1,27 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvwc68upppf3o"]
+[gd_scene load_steps=6 format=3 uid="uid://cvwc68upppf3o"]
 
-[ext_resource type="PackedScene" uid="uid://cw54y3fxxqw3e" path="res://Player/Player.tscn" id="1_gxfxi"]
-[ext_resource type="PackedScene" uid="uid://f6v5o8ddij" path="res://Bullet/Bullet.tscn" id="2_xyjqk"]
+[ext_resource type="PackedScene" uid="uid://dd4ogducp3nu6" path="res://shooting.tscn" id="1_nleqj"]
+[ext_resource type="Script" path="res://cameracontrol.gd" id="2_gcgja"]
+[ext_resource type="Texture2D" uid="uid://2oj3c71sm1jl" path="res://icon.svg" id="3_jdoqv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e70yu"]
-size = Vector2(867.5, 129.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ac0ke"]
+size = Vector2(476, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqyt2"]
+size = Vector2(114, 156.5)
 
 [node name="world" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_gxfxi")]
-position = Vector2(326, 146)
+[node name="Shooting" parent="." instance=ExtResource("1_nleqj")]
+position = Vector2(8.65634, -0.882614)
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["Camera"]]
+zoom = Vector2(2, 2)
+script = ExtResource("2_gcgja")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(127, 29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(434.25, 427)
-shape = SubResource("RectangleShape2D_e70yu")
+position = Vector2(99, 0)
+shape = SubResource("RectangleShape2D_ac0ke")
 
-[node name="Panel" type="Panel" parent="StaticBody2D"]
-offset_left = 4.0
-offset_top = 360.0
-offset_right = 870.0
-offset_bottom = 497.0
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(3.73438, 0.1875)
+texture = ExtResource("3_jdoqv")
 
-[node name="RigidBody2D" parent="." instance=ExtResource("2_xyjqk")]
-position = Vector2(119, 79)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(300, -88.75)
+shape = SubResource("RectangleShape2D_pqyt2")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
+position = Vector2(4.52995e-06, -0.249998)
+scale = Vector2(0.890625, 1.21875)
+texture = ExtResource("3_jdoqv")
