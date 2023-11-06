@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvwc68upppf3o"]
+[gd_scene load_steps=9 format=3 uid="uid://cvwc68upppf3o"]
 
+[ext_resource type="PackedScene" uid="uid://dutokdk3ks13s" path="res://ShadowWizzard.tscn" id="1_b82bf"]
 [ext_resource type="PackedScene" uid="uid://dd4ogducp3nu6" path="res://shooting.tscn" id="1_nleqj"]
+[ext_resource type="PackedScene" uid="uid://btxlb1oopkjt1" path="res://MainChar.tscn" id="2_bshqs"]
 [ext_resource type="Script" path="res://cameracontrol.gd" id="2_gcgja"]
 [ext_resource type="Texture2D" uid="uid://2oj3c71sm1jl" path="res://icon.svg" id="3_jdoqv"]
 [ext_resource type="PackedScene" uid="uid://cwpe71t1t7i5m" path="res://Enemy.tscn" id="4_4y5cv"]
@@ -13,8 +15,13 @@ size = Vector2(114, 156.5)
 
 [node name="world" type="Node2D"]
 
+[node name="Shadow Wizzard" parent="." instance=ExtResource("1_b82bf")]
+position = Vector2(352, -15)
+
+[node name="MainChar" parent="." instance=ExtResource("2_bshqs")]
+position = Vector2(-26, -10)
+
 [node name="Shooting" parent="." instance=ExtResource("1_nleqj")]
-position = Vector2(8.65634, -0.882614)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Camera"]]
 zoom = Vector2(2, 2)
@@ -24,7 +31,7 @@ script = ExtResource("2_gcgja")
 position = Vector2(127, 29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(99, 0)
+position = Vector2(60, 0)
 shape = SubResource("RectangleShape2D_ac0ke")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
@@ -32,7 +39,7 @@ scale = Vector2(3.73438, 0.1875)
 texture = ExtResource("3_jdoqv")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(300, -88.75)
+position = Vector2(300, -81.75)
 shape = SubResource("RectangleShape2D_pqyt2")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
@@ -42,4 +49,4 @@ scale = Vector2(0.890625, 1.21875)
 texture = ExtResource("3_jdoqv")
 
 [node name="Enemy" parent="." instance=ExtResource("4_4y5cv")]
-position = Vector2(146, -2)
+position = Vector2(317, -4)

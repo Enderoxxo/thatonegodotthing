@@ -8,7 +8,7 @@ enum Shoot_state{
 	reset
 }
 
-
+var tip_of_gun
 var shooting_state
 var tracer
 var gunpos
@@ -26,6 +26,7 @@ func _ready():
 	prevshot = $prevshot
 	firsttime = true
 	bullet_path = load("res://Bullet/Bullet.tscn")
+	tip_of_gun = get_tree().get_nodes_in_group("tipofgun")[0].position
 	pass # Replace with function body.
 
 
@@ -85,13 +86,14 @@ func _process(delta):
 			pass
 			
 		Shoot_state.handover_ai:
-			Enemy.AIshooting_state = Enemy.AIShoot_state.firing
+			Enemy.ai_turn = true
+			#Enemy.AIshooting_state = Enemy.AIShoot_state.firing
 			pass
 			
 		Shoot_state.reset:
 			var bullet = bullet_path.instantiate()
 			bullet.bullet_ready()
-			bullet.position.x = 14
+			bullet.position = tip_of_gun
 			get_node("Gun").add_child(bullet)
 			bullet.visible = false
 

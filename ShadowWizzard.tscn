@@ -1,0 +1,82 @@
+[gd_scene load_steps=16 format=3 uid="uid://dutokdk3ks13s"]
+
+[ext_resource type="Texture2D" uid="uid://7ytnsjq155jq" path="res://animations/Shadow Wizard/Shadow Wizard1.png" id="1_1sflo"]
+[ext_resource type="Texture2D" uid="uid://27v6ajuto14l" path="res://animations/Shadow Wizard/Shadow Wizard2.png" id="2_22tia"]
+[ext_resource type="Texture2D" uid="uid://bu31t635mm1qu" path="res://animations/Shadow Wizard/Shadow Wizard3.png" id="3_ync66"]
+[ext_resource type="Texture2D" uid="uid://c7n4v2nyhsiqa" path="res://animations/Shadow Wizard/Shadow Wizard4.png" id="4_q47ca"]
+[ext_resource type="Texture2D" uid="uid://c3ollaun1r6rx" path="res://animations/Shadow Wizard/Shadow Wizard5.png" id="5_w67pm"]
+[ext_resource type="Texture2D" uid="uid://cl34huhuhbg38" path="res://animations/Shadow Wizard/Shadow Wizard6.png" id="6_1bn4m"]
+[ext_resource type="Texture2D" uid="uid://dupwybn6kud4w" path="res://animations/Shadow Wizard/Shadow Wizard7.png" id="7_v2k8k"]
+[ext_resource type="Texture2D" uid="uid://cbewu0yo6s1cw" path="res://animations/Shadow Wizard/Shadow Wizard8.png" id="8_jvng4"]
+[ext_resource type="Texture2D" uid="uid://24hvu8r3vsus" path="res://animations/Shadow Wizard/Shadow Wizard9.png" id="9_cnovl"]
+[ext_resource type="Texture2D" uid="uid://ccu1itpj0x13y" path="res://animations/Shadow Wizard/Shadow Wizard10.png" id="10_t2twh"]
+[ext_resource type="Texture2D" uid="uid://dw6wdeildxn6e" path="res://animations/Shadow Wizard/Shadow Wizard11.png" id="11_0rgwe"]
+[ext_resource type="Texture2D" uid="uid://cyldsplr2br2v" path="res://animations/Shadow Wizard/Shadow Wizard12.png" id="12_0xm4n"]
+[ext_resource type="Texture2D" uid="uid://crsmk6lcpqk4c" path="res://animations/Shadow Wizard/Shadow Wizard13.png" id="13_673sk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hka2b"]
+animations = [{
+"frames": [{
+"duration": 14.0,
+"texture": ExtResource("1_1sflo")
+}, {
+"duration": 6.0,
+"texture": ExtResource("2_22tia")
+}, {
+"duration": 4.0,
+"texture": ExtResource("3_ync66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_q47ca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w67pm")
+}, {
+"duration": 2.0,
+"texture": ExtResource("6_1bn4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v2k8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jvng4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cnovl")
+}, {
+"duration": 2.0,
+"texture": ExtResource("10_t2twh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0rgwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0xm4n")
+}, {
+"duration": 6.0,
+"texture": ExtResource("13_673sk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ra57q"]
+radius = 7.0
+height = 26.0
+
+[node name="Shadow Wizzard" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+scale = Vector2(2, 2)
+lock_rotation = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_hka2b")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0240388
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_ra57q")

@@ -38,5 +38,5 @@ func _process(delta):
 			AIfollow_bullet = false
 			tween = get_tree().create_tween()
 			tween.tween_property(self,"position",startingpos,2)
-			bullet2 = get_tree().get_nodes_in_group("Bullet2")[0]
+
 	pass

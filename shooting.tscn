@@ -11,6 +11,16 @@ radius = 110.0
 [node name="Shooting" type="Node2D" groups=["Shooting"]]
 script = ExtResource("1_ay3jj")
 
+[node name="tracer" type="Line2D" parent="." groups=["tracer"]]
+texture_repeat = 2
+position = Vector2(-0.133333, 0)
+scale = Vector2(0.933333, 0.978)
+points = PackedVector2Array(0.142857, 0, 15.1429, 0)
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+texture = ExtResource("3_uixn3")
+texture_mode = 1
+
 [node name="prevshot" type="Line2D" parent="."]
 visible = false
 texture_repeat = 2
@@ -22,19 +32,12 @@ default_color = Color(0.960784, 0.690196, 0.0156863, 0.380392)
 texture = ExtResource("3_uixn3")
 texture_mode = 1
 
-[node name="tracer" type="Line2D" parent="."]
-texture_repeat = 2
-position = Vector2(-0.133333, 0)
-scale = Vector2(0.933333, 0.978)
-points = PackedVector2Array(0, 0, 11, 0)
-width = 2.0
-default_color = Color(1, 0, 0, 1)
-texture = ExtResource("3_uixn3")
-texture_mode = 1
-
 [node name="Gun" type="Sprite2D" parent="."]
 texture = ExtResource("2_y6sui")
 offset = Vector2(0, 4)
+
+[node name="tip of gun" type="Marker2D" parent="Gun" groups=["tipofgun"]]
+position = Vector2(14, 0)
 
 [node name="Bullet" parent="Gun" instance=ExtResource("4_07igu")]
 visible = false

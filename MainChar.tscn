@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://btxlb1oopkjt1"]
+
+[ext_resource type="Texture2D" uid="uid://dnv8g2y4dm0k7" path="res://animations/Dedeta/Dende1.png" id="1_lkhia"]
+[ext_resource type="Texture2D" uid="uid://dv0x6hm8b227p" path="res://animations/Dedeta/Dende2.png" id="2_1vego"]
+[ext_resource type="Texture2D" uid="uid://blv66iwg4fmci" path="res://animations/Dedeta/Dende3.png" id="3_kwq4h"]
+[ext_resource type="Texture2D" uid="uid://cnmoqtes3e53x" path="res://animations/Dedeta/Dende4.png" id="4_no82u"]
+[ext_resource type="Texture2D" uid="uid://d1dk71f1qwb1m" path="res://animations/Dedeta/Dende5.png" id="5_y5u5l"]
+[ext_resource type="Texture2D" uid="uid://bvi2jrfpxxyqx" path="res://animations/Dedeta/Dende6.png" id="6_0r68f"]
+[ext_resource type="Texture2D" uid="uid://cyetlbss5df3i" path="res://animations/Dedeta/Dende7.png" id="7_rt8ox"]
+[ext_resource type="Texture2D" uid="uid://5wpoy6mwwtgn" path="res://animations/Dedeta/Dende8.png" id="8_bqikq"]
+[ext_resource type="Texture2D" uid="uid://c2cetrrimm2v6" path="res://animations/Dedeta/Dende9.png" id="9_6kinh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xcr8y"]
+animations = [{
+"frames": [{
+"duration": 14.0,
+"texture": ExtResource("1_lkhia")
+}, {
+"duration": 5.0,
+"texture": ExtResource("2_1vego")
+}, {
+"duration": 14.0,
+"texture": ExtResource("3_kwq4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_no82u")
+}, {
+"duration": 2.5,
+"texture": ExtResource("5_y5u5l")
+}, {
+"duration": 2.5,
+"texture": ExtResource("6_0r68f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rt8ox")
+}, {
+"duration": 14.0,
+"texture": ExtResource("8_bqikq")
+}, {
+"duration": 5.0,
+"texture": ExtResource("9_6kinh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o3jl7"]
+radius = 7.0
+height = 24.0
+
+[node name="MainChar" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+scale = Vector2(2, 2)
+lock_rotation = true
+
+[node name="dende" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_xcr8y")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.336879
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_o3jl7")
