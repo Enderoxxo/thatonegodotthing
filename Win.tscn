@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bsdisib4kvle1"]
+
+[node name="Lose" type="Node2D"]
+
+[node name="Play" type="Button" parent="."]
+offset_left = 409.0
+offset_top = 293.0
+offset_right = 723.0
+offset_bottom = 414.0
+tooltip_text = "Press this to play the game!"
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 409.0
+offset_top = 454.0
+offset_right = 723.0
+offset_bottom = 575.0
+tooltip_text = "Buh Bye!"
+text = "Quit!"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 315.0
+offset_top = 73.0
+offset_right = 819.0
+offset_bottom = 209.0
+text = "You Lost!
+
+Unfortunate!"
+horizontal_alignment = 1
+vertical_alignment = 1

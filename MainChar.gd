@@ -31,7 +31,7 @@ func _process(delta):
 	if health <= 0:
 		if deathnotif == 0:
 			print("You Died!")
-			GameManager.GameState.Lose
+			GameManager.current_game_state = GameManager.GameState.Lose
 			deathnotif = 1
 	pass
 

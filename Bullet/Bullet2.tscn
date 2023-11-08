@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3ue2"]
 radius = 8.0
 
-[node name="Bullet2" type="RigidBody2D" groups=["Bullet", "Bullet2"]]
+[node name="Bullet2" type="RigidBody2D" groups=["Bullet2"]]
 can_sleep = false
 freeze_mode = 1
 script = ExtResource("1_ohmor")

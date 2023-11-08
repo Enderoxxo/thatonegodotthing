@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=3 uid="uid://cuh625iia51mg"]
+
+[ext_resource type="Script" path="res://EnemyCharCollision.gd" id="1_x5s63"]
+[ext_resource type="Texture2D" uid="uid://dkpfgex4rubda" path="res://animations/Ninja/Ninja1.png" id="2_alhet"]
+[ext_resource type="Texture2D" uid="uid://ckcvufhhmw64k" path="res://animations/Ninja/Ninja2.png" id="3_1o1s1"]
+[ext_resource type="Texture2D" uid="uid://cbh2g6y4l174l" path="res://animations/Ninja/Ninja3.png" id="4_na2fs"]
+[ext_resource type="Texture2D" uid="uid://dfeujjukw7pa6" path="res://animations/Ninja/Ninja4.png" id="5_iwmta"]
+[ext_resource type="Texture2D" uid="uid://dgr8cxx1d30ty" path="res://animations/Ninja/Ninja5.png" id="6_3om7r"]
+[ext_resource type="Texture2D" uid="uid://dudqxnsnlaefi" path="res://animations/Ninja/Ninja6.png" id="7_yp7ab"]
+[ext_resource type="Texture2D" uid="uid://ct4rgn0gw5kel" path="res://animations/Ninja/Ninja7.png" id="8_cdqik"]
+[ext_resource type="Texture2D" uid="uid://bwsosehxojdm5" path="res://animations/Ninja/Ninja8.png" id="9_i14ad"]
+[ext_resource type="Texture2D" uid="uid://bnui0ckhae0t3" path="res://animations/Ninja/Ninja9.png" id="10_2s41a"]
+[ext_resource type="Texture2D" uid="uid://cfeu3b2o68j21" path="res://animations/Ninja/Ninja10.png" id="11_dcq75"]
+[ext_resource type="Texture2D" uid="uid://dwd2ymo2qpfer" path="res://animations/Ninja/Ninja11.png" id="12_vo8kr"]
+[ext_resource type="Texture2D" uid="uid://cb5hgkdikaqxn" path="res://animations/Ninja/Ninja12.png" id="13_xi8qc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ne8f2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_alhet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1o1s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_na2fs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iwmta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3om7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yp7ab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cdqik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_i14ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2s41a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_dcq75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vo8kr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xi8qc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nt2td"]
+radius = 7.0
+height = 26.0
+
+[node name="Ninja" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+scale = Vector2(2, 2)
+max_contacts_reported = 10
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_x5s63")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_ne8f2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.881574
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_nt2td")
+
+[node name="HBar" type="ProgressBar" parent="."]
+offset_left = -33.0
+offset_top = -33.0
+offset_right = 33.0
+offset_bottom = -6.0
+max_value = 9.0
+step = 1.0
+value = 9.0

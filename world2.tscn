@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://d0hcvp0qc48gk"]
+
+[ext_resource type="PackedScene" uid="uid://btxlb1oopkjt1" path="res://MainChar.tscn" id="2_dv16s"]
+[ext_resource type="PackedScene" uid="uid://dd4ogducp3nu6" path="res://shooting.tscn" id="3_gfo1l"]
+[ext_resource type="Script" path="res://cameracontrol.gd" id="4_niynp"]
+[ext_resource type="Texture2D" uid="uid://2oj3c71sm1jl" path="res://icon.svg" id="5_jtcjb"]
+[ext_resource type="Texture2D" uid="uid://pfruj2kcx0b3" path="res://animations/Namek House.png" id="5_n71g4"]
+[ext_resource type="PackedScene" uid="uid://cwpe71t1t7i5m" path="res://Enemy.tscn" id="6_g4r20"]
+[ext_resource type="PackedScene" uid="uid://cuh625iia51mg" path="res://Ninja.tscn" id="7_h6x1d"]
+[ext_resource type="Texture2D" uid="uid://bj0intcyj3mp" path="res://Dojo Fort.png" id="7_mrg7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpilp"]
+size = Vector2(1074, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnje6"]
+size = Vector2(114, 156.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2ot"]
+size = Vector2(182, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjlha"]
+size = Vector2(238.5, 20)
+
+[node name="world2" type="Node2D"]
+
+[node name="MainChar" parent="." instance=ExtResource("2_dv16s")]
+position = Vector2(-26, -10)
+
+[node name="Shooting" parent="." instance=ExtResource("3_gfo1l")]
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["Camera"]]
+zoom = Vector2(2, 2)
+script = ExtResource("4_niynp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(127, 29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(359, 0)
+shape = SubResource("RectangleShape2D_wpilp")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(6.00006, 0)
+scale = Vector2(13.9219, 0.1875)
+texture = ExtResource("5_jtcjb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1063, -252.75)
+shape = SubResource("RectangleShape2D_tnje6")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
+visible = false
+position = Vector2(4.52995e-06, -0.249998)
+scale = Vector2(0.890625, 1.21875)
+texture = ExtResource("5_jtcjb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-282, -95.5)
+shape = SubResource("RectangleShape2D_mo2ot")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D3"]
+position = Vector2(0.999985, 0.0624776)
+scale = Vector2(2.75, 2.61133)
+texture = ExtResource("5_n71g4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(944, -176)
+shape = SubResource("RectangleShape2D_fjlha")
+
+[node name="Enemy" parent="." instance=ExtResource("6_g4r20")]
+position = Vector2(1006, -178)
+
+[node name="CorrectShot" type="Marker2D" parent="Enemy"]
+position = Vector2(-93, 11)
+
+[node name="DojoFort" type="Sprite2D" parent="."]
+position = Vector2(1055, -97)
+scale = Vector2(3.49219, 3.49219)
+texture = ExtResource("7_mrg7s")
+
+[node name="Ninja" parent="." instance=ExtResource("7_h6x1d")]
+position = Vector2(1057, -182)

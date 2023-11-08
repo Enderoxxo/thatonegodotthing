@@ -3,14 +3,15 @@
 [ext_resource type="Script" path="res://ai.gd" id="1_o5pxp"]
 [ext_resource type="Texture2D" uid="uid://cswjk0gt087vt" path="res://Gun/gunplaceholder.png" id="2_cat0w"]
 [ext_resource type="PackedScene" uid="uid://dj7dcn7ek8ch1" path="res://Bullet/Bullet2.tscn" id="3_u67v3"]
-[ext_resource type="Script" path="res://cameracontrol.gd" id="4_ls2sh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htsed"]
+radius = 114.018
 
 [node name="Enemy" type="Node2D" groups=["Enemy"]]
 script = ExtResource("1_o5pxp")
 
 [node name="Gun2" type="Sprite2D" parent="."]
 texture = ExtResource("2_cat0w")
-flip_h = true
 
 [node name="Bullet2" parent="Gun2" instance=ExtResource("3_u67v3")]
 visible = false
@@ -20,8 +21,9 @@ freeze = true
 [node name="Tipofgun" type="Marker2D" parent="Gun2" groups=["Tipofgun"]]
 position = Vector2(13, -4)
 
-[node name="CorrectShot" type="Marker2D" parent="."]
-position = Vector2(-69, -8)
+[node name="Touch_area" type="Area2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="." groups=["tempcam"]]
-script = ExtResource("4_ls2sh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Touch_area"]
+shape = SubResource("CircleShape2D_htsed")
+
+[connection signal="input_event" from="Touch_area" to="." method="_on_touch_area_input_event"]

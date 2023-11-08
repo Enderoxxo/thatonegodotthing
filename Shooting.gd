@@ -91,11 +91,11 @@ func _process(delta):
 			pass
 			
 		Shoot_state.reset:
-			var bullet = bullet_path.instantiate()
-			bullet.bullet_ready()
-			bullet.position = tip_of_gun
-			get_node("Gun").add_child(bullet)
-			bullet.visible = false
+			var bullet2 = bullet_path.instantiate()
+			bullet2.bullet_ready()
+			bullet2.position = tip_of_gun
+			get_node("Gun").add_child(bullet2)
+			bullet2.visible = false
 
 			shooting_state = Shoot_state.handover_ai
 			

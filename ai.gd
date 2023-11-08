@@ -4,7 +4,7 @@ enum AIShoot_state{
 	idle,
 	firing,
 	bullet_lauched,
-	handover_ai,
+	handover_player,
 	reset
 }
 
@@ -24,7 +24,7 @@ func _ready():
 	centered = $Gun2.position
 	bullet_path = load("res://Bullet/Bullet2.tscn")
 	correctshot = $CorrectShot.position
-	AIshooting_state = AIShoot_state.firing
+	AIshooting_state = AIShoot_state.idle
 	tip_of_gun = get_tree().get_nodes_in_group("Tipofgun")[0].position
 	gun2pos = $Gun2.position
 	ai_turn = false
@@ -34,16 +34,9 @@ func _ready():
 func _process(delta):
 	if ai_turn:
 		ai_turn = false
-		var t = Timer.new()
-		t.set_wait_time(5)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
-		await t.timeout
-		ai_turn = false
 		match AIshooting_state:
 			AIShoot_state.firing:
-				ai_turn = false
+
 				var bullet = get_tree().get_nodes_in_group("Bullet2")[0]
 				gun2.look_at(correctshot)
 				var location = correctshot
@@ -73,13 +66,24 @@ func _process(delta):
 				pass
 			AIShoot_state.idle:
 				pass 
+			AIShoot_state.handover_player:
+				
+				pass
 			AIShoot_state.reset:
-				ai_turn = false
+
 				var bullet = bullet_path.instantiate()
 				bullet.bullet_ready()
 				bullet.position = tip_of_gun
 				get_node("Gun2").add_child(bullet)
 				bullet.visible = false
-				AIshooting_state = AIShoot_state.firing
+				AIshooting_state = AIShoot_state.idle
 				shooting.shooting_state = shooting.Shoot_state.idle
 					
+					
+					
+				
+func _on_touch_area_input_event(viewport, event, shape_idx):
+	if AIshooting_state == AIShoot_state.idle:
+		if(event is InputEventMouseButton && event.pressed):
+			AIshooting_state = AIShoot_state.firing
+	pass # Replace with function body.
