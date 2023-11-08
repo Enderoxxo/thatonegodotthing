@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dutokdk3ks13s"]
+[gd_scene load_steps=18 format=3 uid="uid://dutokdk3ks13s"]
 
 [ext_resource type="Texture2D" uid="uid://7ytnsjq155jq" path="res://animations/Shadow Wizard/Shadow Wizard1.png" id="1_1sflo"]
+[ext_resource type="Script" path="res://EnemyChar.gd" id="1_ptrob"]
 [ext_resource type="Texture2D" uid="uid://27v6ajuto14l" path="res://animations/Shadow Wizard/Shadow Wizard2.png" id="2_22tia"]
+[ext_resource type="Script" path="res://EnemyCharCollision.gd" id="2_nxqq1"]
 [ext_resource type="Texture2D" uid="uid://bu31t635mm1qu" path="res://animations/Shadow Wizard/Shadow Wizard3.png" id="3_ync66"]
 [ext_resource type="Texture2D" uid="uid://c7n4v2nyhsiqa" path="res://animations/Shadow Wizard/Shadow Wizard4.png" id="4_q47ca"]
 [ext_resource type="Texture2D" uid="uid://c3ollaun1r6rx" path="res://animations/Shadow Wizard/Shadow Wizard5.png" id="5_w67pm"]
@@ -66,10 +68,14 @@ radius = 7.0
 height = 26.0
 
 [node name="Shadow Wizzard" type="Node2D"]
+script = ExtResource("1_ptrob")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 scale = Vector2(2, 2)
+max_contacts_reported = 10
+contact_monitor = true
 lock_rotation = true
+script = ExtResource("2_nxqq1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
 sprite_frames = SubResource("SpriteFrames_hka2b")
@@ -80,3 +86,14 @@ frame_progress = 0.0240388
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_ra57q")
+
+[node name="HBar" type="ProgressBar" parent="."]
+offset_left = -56.0
+offset_top = -41.0
+offset_right = 56.0
+offset_bottom = -14.0
+max_value = 9.0
+step = 1.0
+value = 9.0
+
+[connection signal="damage" from="RigidBody2D" to="." method="_on_rigid_body_2d_damage"]

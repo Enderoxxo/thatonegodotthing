@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvwc68upppf3o"]
+[gd_scene load_steps=10 format=3 uid="uid://cvwc68upppf3o"]
 
 [ext_resource type="PackedScene" uid="uid://dutokdk3ks13s" path="res://ShadowWizzard.tscn" id="1_b82bf"]
 [ext_resource type="PackedScene" uid="uid://dd4ogducp3nu6" path="res://shooting.tscn" id="1_nleqj"]
@@ -12,6 +12,9 @@ size = Vector2(476, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqyt2"]
 size = Vector2(114, 156.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6kuq"]
+size = Vector2(49.72, 180.62)
 
 [node name="world" type="Node2D"]
 
@@ -47,6 +50,10 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 position = Vector2(4.52995e-06, -0.249998)
 scale = Vector2(0.890625, 1.21875)
 texture = ExtResource("3_jdoqv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-201, -72)
+shape = SubResource("RectangleShape2D_b6kuq")
 
 [node name="Enemy" parent="." instance=ExtResource("4_4y5cv")]
 position = Vector2(317, -4)

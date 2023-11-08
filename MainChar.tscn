@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://btxlb1oopkjt1"]
+[gd_scene load_steps=14 format=3 uid="uid://btxlb1oopkjt1"]
 
+[ext_resource type="Script" path="res://MainChar.gd" id="1_e71ap"]
 [ext_resource type="Texture2D" uid="uid://dnv8g2y4dm0k7" path="res://animations/Dedeta/Dende1.png" id="1_lkhia"]
 [ext_resource type="Texture2D" uid="uid://dv0x6hm8b227p" path="res://animations/Dedeta/Dende2.png" id="2_1vego"]
+[ext_resource type="Script" path="res://MainCharCollision.gd" id="2_iub2y"]
 [ext_resource type="Texture2D" uid="uid://blv66iwg4fmci" path="res://animations/Dedeta/Dende3.png" id="3_kwq4h"]
 [ext_resource type="Texture2D" uid="uid://cnmoqtes3e53x" path="res://animations/Dedeta/Dende4.png" id="4_no82u"]
 [ext_resource type="Texture2D" uid="uid://d1dk71f1qwb1m" path="res://animations/Dedeta/Dende5.png" id="5_y5u5l"]
@@ -50,10 +52,14 @@ radius = 7.0
 height = 24.0
 
 [node name="MainChar" type="Node2D"]
+script = ExtResource("1_e71ap")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 scale = Vector2(2, 2)
+max_contacts_reported = 10
+contact_monitor = true
 lock_rotation = true
+script = ExtResource("2_iub2y")
 
 [node name="dende" type="AnimatedSprite2D" parent="RigidBody2D"]
 sprite_frames = SubResource("SpriteFrames_xcr8y")
@@ -64,3 +70,14 @@ frame_progress = 0.336879
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_o3jl7")
+
+[node name="HBar" type="ProgressBar" parent="."]
+offset_left = -47.0
+offset_top = -35.0
+offset_right = 47.0
+offset_bottom = -8.0
+max_value = 9.0
+step = 1.0
+value = 9.0
+
+[connection signal="damage" from="RigidBody2D" to="." method="_on_rigid_body_2d_damage"]
